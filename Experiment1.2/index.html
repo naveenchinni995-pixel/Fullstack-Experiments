@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BankFORM</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: #68d7e6;
+}
+
+.box{
+    width: 300px;
+    margin: 100px auto;
+    background: rgb(216, 110, 110);
+    padding: 15px;
+}
+
+.balance{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input, button{
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="balance">
+        <span>Balance</span>
+        <span>₹ <span id="balance">1000</span></span>
+    </div>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="withdraw()">Withdraw</button>
+
+    <p id="msg"></p>
+
+</div>
+
+<script>
+let balance = 1000;
+
+function deposit(){
+    let amt = document.getElementById("amount").value;
+
+    if(amt <= 0){
+        document.getElementById("msg").innerText = "Invalid amount";
+        return;
+    }
+
+    balance = balance + Number(amt);
+    document.getElementById("balance").innerText = balance;
+    document.getElementById("msg").innerText = "Deposited";
+}
+
+function withdraw(){
+    let amt = document.getElementById("amount").value;
+
+    if(amt <= 0){
+        document.getElementById("msg").innerText = "Invalid amount";
+        return;
+    }
+
+    if(amt > balance){
+        document.getElementById("msg").innerText = "Insufficient balance";
+        return;
+    }
+
+    balance = balance - Number(amt);
+    document.getElementById("balance").innerText = balance;
+    document.getElementById("msg").innerText = "Withdrawn";
+}
+</script>
+
+</body>
+</html>
